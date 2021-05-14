@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mlapi.contrib.transport.photon-realtime": {
+      "version": "https://github.com/Unity-Technologies/mlapi-community-contributions.git?path=/Transports/com.mlapi.contrib.transport.photon-realtime",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "faa77c81d04d65cdba460550c8c05b5b60fe8ce7"
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
@@ -26,6 +33,24 @@
     "com.unity.ide.vscode": {
       "version": "1.2.3",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.multiplayer.mlapi": {
+      "version": "https://github.com/Unity-Technologies/com.unity.multiplayer.mlapi.git?path=/com.unity.multiplayer.mlapi#release/0.1.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.nuget.mono-cecil": "1.10.1-preview.1"
+      },
+      "hash": "3e3aef6aa02c2a25359898319e5bd49d3518b57b"
+    },
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.10.1-preview.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -70,6 +95,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.veriorpies.parrelsync": {
+      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "95a062cb14e669c7834094366611765d3a9658d6"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
