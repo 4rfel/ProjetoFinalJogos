@@ -43,6 +43,6 @@ public class PlayerMovement : NetworkBehaviour {
 	void HandleForce() {
 		currentForce += dForce * Input.GetAxis("Vertical") * Time.timeScale;
 		currentForce = Mathf.Clamp(currentForce, minForce, maxForce);
-		Debug.Log(currentForce);
+		//Debug.Log(currentForce);
 	}
 }

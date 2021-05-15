@@ -5,6 +5,8 @@ public class PlayerCamera : NetworkBehaviour {
 
 	[SerializeField] GameObject cam;
 
+	[SerializeField] PlayerPause playerPause;
+
 	Vector3 camOriPos;
 
 	float pitch = 0f;
@@ -21,6 +23,9 @@ public class PlayerCamera : NetworkBehaviour {
 
 	void Update() {
 		if (IsLocalPlayer) {
+			if (playerPause.paused)
+				return;
+
 			Handlelook();
 			HandleChangeCamMode();
 			if (isFree) {
