@@ -1,16 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.SceneManagement;
 
-
 public class PlayerPause : NetworkBehaviour {
 
 	[SerializeField] GameObject pauseCanvas;
 	[SerializeField] GameObject tabCanvas;
+
+	[SerializeField] Text roomName;
 
 
 	public bool paused = false;
@@ -18,6 +19,8 @@ public class PlayerPause : NetworkBehaviour {
 	private void Start() {
 		pauseCanvas.SetActive(false);
 		tabCanvas.SetActive(false);
+			MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport>();
+			roomName.text = transport.RoomName;
 	}
 
 	void Update() {
@@ -29,6 +32,9 @@ public class PlayerPause : NetworkBehaviour {
 			} else {
 				Cursor.lockState = CursorLockMode.Locked;
 			}
+		}
+
+		if (IsLocalPlayer) {
 		}
 	}
 
@@ -45,15 +51,10 @@ public class PlayerPause : NetworkBehaviour {
 	}
 
 	private IEnumerator Disconnect_() {
-		Debug.Log("switch to menu");
 		NetworkSceneManager.SwitchScene("Menu");
-		Debug.Log("wait 3 seconds");
 		yield return new WaitForFixedUpdate();
-		Debug.Log("call HostDisconnectServerRpc");
 		HostDisconnectServerRpc();
-		Debug.Log("wait 3 seconds");
 		yield return new WaitForFixedUpdate();
-		Debug.Log("stop host");
 		NetworkManager.Singleton.StopHost();
 	}
 
@@ -75,18 +76,13 @@ public class PlayerPause : NetworkBehaviour {
 
 	[ServerRpc]
 	void HostDisconnectServerRpc() {
-		Debug.Log("server call DisconnetClientRpc on clients");
 		DisconnetClientRpc();
-		Debug.Log("finished calling DisconnetClientRpc on clients");
-
 	}
 
 	[ClientRpc]
 	void DisconnetClientRpc() {
 		if (IsOwner)
 			return;
-		Debug.Log("stoping client");
 		NetworkManager.Singleton.StopClient();
-		Debug.Log("client stoped");
 	}
 }
