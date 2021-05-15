@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NickName: 
-  m_RoomName: 
+  m_RoomName: 123456
   m_MaxPlayers: 20
   m_ChannelIdCodesStartRange: 0
   m_AttachSupportLogger: 0
@@ -180,11 +180,11 @@ MonoBehaviour:
     NetworkTransport: {fileID: 26069806}
     RegisteredScenes:
     - Menu
-    - Loby
-    - Role1
+    - Lobby
+    - Hole1
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
-    - Prefab: {fileID: 8017288274098930512, guid: 133d59d223dcfc3488e5fb524a425e3f,
+    - Prefab: {fileID: 4905069836326903626, guid: 133d59d223dcfc3488e5fb524a425e3f,
         type: 3}
       PlayerPrefab: 1
     PlayerPrefabHash:

@@ -20,7 +20,7 @@ public class MenuButtons : NetworkBehaviour {
 		//}
 		//transport.RoomName = str;
 		NetworkManager.Singleton.StartHost();
-		NetworkSceneManager.SwitchScene("Loby");
+		NetworkSceneManager.SwitchScene("Lobby");
 	}
 
 	public void Join() {
@@ -33,4 +33,9 @@ public class MenuButtons : NetworkBehaviour {
 	public void Quit() {
 		Application.Quit();
 	}
+
+	public void OnJoinRoomFailed() {
+
+	}
+
 }
