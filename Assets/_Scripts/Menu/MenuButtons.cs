@@ -28,7 +28,7 @@ public class MenuButtons : NetworkBehaviour {
 		}
 		transport.RoomName = str;
 		Camera.main.gameObject.SetActive(false);
-		//NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
+		NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
 		NetworkManager.Singleton.StartHost();
 		NetworkSceneManager.SwitchScene("Lobby");
 	}
@@ -43,7 +43,7 @@ public class MenuButtons : NetworkBehaviour {
 		if (transport.RoomName.Length != 6)
 			return;
 		//Camera.main.gameObject.SetActive(false);
-		//NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("v0");
+		NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("v0");
 		NetworkManager.Singleton.StartClient();
 		buttons.SetActive(false);
 	}
