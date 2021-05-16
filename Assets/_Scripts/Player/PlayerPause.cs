@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
+using MLAPI.Messaging;
 using MLAPI.SceneManagement;
 using MLAPI.Transports.PhotonRealtime;
 
@@ -68,19 +69,17 @@ public class PlayerPause : NetworkBehaviour {
 	}
 
 	IEnumerator Disconnect_() {
-		
+
 		NetworkSceneManager.SwitchScene("Menu");
-		yield return new WaitForSeconds(1);
 
 		System.Collections.Generic.List<MLAPI.Connection.NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
 		while (clients.Count != 1) {
-			NetworkManager.Singleton.DisconnectClient(clients[1].ClientId);
 			yield return new WaitForFixedUpdate();
+			NetworkManager.Singleton.DisconnectClient(clients[1].ClientId);
 			clients = NetworkManager.Singleton.ConnectedClientsList;
 		}
-		yield return new WaitForFixedUpdate();
+		yield return new WaitForSeconds(0.01f);
 		NetworkManager.Singleton.StopHost();
-		SceneManager.LoadScene("Menu");
 
 	}
 }
