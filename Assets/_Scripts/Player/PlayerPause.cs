@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
-using MLAPI.Messaging;
 using MLAPI.SceneManagement;
 using MLAPI.Transports.PhotonRealtime;
 
@@ -14,7 +13,6 @@ public class PlayerPause : NetworkBehaviour {
 	[SerializeField] GameObject tabCanvas;
 
 	[SerializeField] Text roomName;
-
 
 	public bool paused = false;
 

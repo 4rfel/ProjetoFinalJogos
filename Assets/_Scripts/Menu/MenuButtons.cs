@@ -8,7 +8,7 @@ public class MenuButtons : NetworkBehaviour {
 
 	[SerializeField] GameObject buttons;
 	[SerializeField] InputField roomName;
-	//[SerializeField] GameObject loading;
+	[SerializeField] Text log;
 	PhotonRealtimeTransport transport;
 
 	private void Start() {
@@ -40,12 +40,28 @@ public class MenuButtons : NetworkBehaviour {
 	}
 
 	public void Join() {
-		if (transport.RoomName.Length != 6)
+		if (transport.RoomName.Length != 6) {
+			log.gameObject.SetActive(true);
+			log.text = "RoomCode need to have 6 chars";
 			return;
+		}
 		//Camera.main.gameObject.SetActive(false);
 		NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("v0");
+		NetworkManager.Singleton.OnClientDisconnectCallback += OnDiconnectClient();
 		NetworkManager.Singleton.StartClient();
 		buttons.SetActive(false);
+	}
+
+	private System.Action<ulong> OnDiconnectClient() {
+		log.gameObject.SetActive(true);
+		log.text = "failed to join room: " + transport.RoomName;
+		buttons.SetActive(true);
+
+		return aa ;
+	}
+
+	private void aa(ulong obj) {
+		return;
 	}
 
 	public void Quit() {
