@@ -38,6 +38,22 @@ public class PlayerPause : NetworkBehaviour {
 		}
 	}
 
+	public void Resume() {
+		if (IsLocalPlayer) {
+			paused = false;
+			pauseCanvas.SetActive(false);
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+	}
+
+	public void Quit() {
+		if (IsLocalPlayer) {
+			Disconnet();
+			Application.Quit();
+		}
+	}
+
 	public void Disconnet() {
 		if (IsLocalPlayer) {
 			if (IsHost) {
@@ -56,23 +72,7 @@ public class PlayerPause : NetworkBehaviour {
 		HostDisconnectServerRpc();
 		yield return new WaitForFixedUpdate();
 		NetworkManager.Singleton.StopHost();
-	}
-
-	public void Resume() {
-		if (IsLocalPlayer) {
-			paused = false;
-			pauseCanvas.SetActive(false);
-			Cursor.visible = false;
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-	}
-
-	public void Quit() {
-		if (IsLocalPlayer) {
-			Disconnet();
-			Application.Quit();
-		}
-	}
+	}	
 
 	[ServerRpc]
 	void HostDisconnectServerRpc() {
