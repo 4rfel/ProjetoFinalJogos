@@ -27,6 +27,7 @@ public class PlayerPause : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			paused = !paused;
 			pauseCanvas.SetActive(paused);
+			Cursor.visible = paused;
 			if (paused) {
 				Cursor.lockState = CursorLockMode.None;
 			} else {
