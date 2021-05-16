@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
-using MLAPI.Messaging;
 using MLAPI.SceneManagement;
+using MLAPI.Transports.PhotonRealtime;
+
 
 public class PlayerPause : NetworkBehaviour {
 
@@ -19,8 +20,8 @@ public class PlayerPause : NetworkBehaviour {
 	private void Start() {
 		pauseCanvas.SetActive(false);
 		tabCanvas.SetActive(false);
-			MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport>();
-			roomName.text = transport.RoomName;
+		PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
+		roomName.text = transport.RoomName;
 	}
 
 	void Update() {
@@ -49,12 +50,12 @@ public class PlayerPause : NetworkBehaviour {
 
 	public void Quit() {
 		if (IsLocalPlayer) {
-			Disconnet();
+			Disconnect();
 			Application.Quit();
 		}
 	}
 
-	public void Disconnet() {
+	public void Disconnect() {
 		if (IsLocalPlayer) {
 			if (IsHost) {
 				IEnumerator coroutine = Disconnect_();
@@ -66,23 +67,20 @@ public class PlayerPause : NetworkBehaviour {
 		}
 	}
 
-	private IEnumerator Disconnect_() {
+	IEnumerator Disconnect_() {
+		
 		NetworkSceneManager.SwitchScene("Menu");
-		yield return new WaitForFixedUpdate();
-		HostDisconnectServerRpc();
+		yield return new WaitForSeconds(1);
+
+		System.Collections.Generic.List<MLAPI.Connection.NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
+		while (clients.Count != 1) {
+			NetworkManager.Singleton.DisconnectClient(clients[1].ClientId);
+			yield return new WaitForFixedUpdate();
+			clients = NetworkManager.Singleton.ConnectedClientsList;
+		}
 		yield return new WaitForFixedUpdate();
 		NetworkManager.Singleton.StopHost();
-	}	
+		SceneManager.LoadScene("Menu");
 
-	[ServerRpc]
-	void HostDisconnectServerRpc() {
-		DisconnetClientRpc();
-	}
-
-	[ClientRpc]
-	void DisconnetClientRpc() {
-		if (IsOwner)
-			return;
-		NetworkManager.Singleton.StopClient();
 	}
 }

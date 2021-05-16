@@ -2,21 +2,20 @@
 using UnityEngine.UI;
 using MLAPI;
 using MLAPI.SceneManagement;
-using MLAPI.Spawning;
-
+using MLAPI.Transports.PhotonRealtime;
 
 public class MenuButtons : NetworkBehaviour {
 
 	[SerializeField] GameObject buttons;
 	[SerializeField] InputField roomName;
 	//[SerializeField] GameObject loading;
-	MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport transport;
+	PhotonRealtimeTransport transport;
 
 	private void Start() {
-		transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<MLAPI.Transports.PhotonRealtime.PhotonRealtimeTransport>();
+		transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
 	}
 
-	void Update() {
+	public void SetRoomName() {
 		if (roomName.text.Length == 6) {
 			transport.RoomName = roomName.text.ToUpper();
 		}
@@ -29,7 +28,7 @@ public class MenuButtons : NetworkBehaviour {
 		}
 		transport.RoomName = str;
 		Camera.main.gameObject.SetActive(false);
-		NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
+		//NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
 		NetworkManager.Singleton.StartHost();
 		NetworkSceneManager.SwitchScene("Lobby");
 	}
@@ -44,7 +43,7 @@ public class MenuButtons : NetworkBehaviour {
 		if (transport.RoomName.Length != 6)
 			return;
 		//Camera.main.gameObject.SetActive(false);
-		NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("v0");
+		//NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("v0");
 		NetworkManager.Singleton.StartClient();
 		buttons.SetActive(false);
 	}
@@ -52,9 +51,4 @@ public class MenuButtons : NetworkBehaviour {
 	public void Quit() {
 		Application.Quit();
 	}
-
-	//public void OnJoinRoomFailed() {
-		
-	//}
-
 }
