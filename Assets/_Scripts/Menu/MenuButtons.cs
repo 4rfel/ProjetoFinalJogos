@@ -53,14 +53,14 @@ public class MenuButtons : NetworkBehaviour {
 	}
 
 	private System.Action<ulong> OnDiconnectClient() {
+		return HandleDisconnectClient;
+	}
+
+	private void HandleDisconnectClient(ulong obj) {
 		log.gameObject.SetActive(true);
 		log.text = "failed to join room: " + transport.RoomName;
 		buttons.SetActive(true);
-
-		return aa ;
-	}
-
-	private void aa(ulong obj) {
+		Debug.Log(obj);
 		return;
 	}
 
