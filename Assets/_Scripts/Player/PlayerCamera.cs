@@ -10,8 +10,9 @@ public class PlayerCamera : NetworkBehaviour {
 	Vector3 camOriPos;
 
 	float pitch = 0f;
+	float yaw = 0f;
 	float mouseSensitivity = 300f;
-	float freeCamSpeed = 00f;
+	float freeCamSpeed = 500f;
 
 	public bool isFree = false;
 
@@ -38,13 +39,16 @@ public class PlayerCamera : NetworkBehaviour {
 		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 		float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-		pitch -= mouseY;
 		if (!isFree) {
-			pitch = Mathf.Clamp(pitch, -25f, 50f);
+			transform.Rotate(Vector3.up * mouseX);
+		} else {
+			pitch -= mouseY;
+			cam.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+			yaw += mouseX;
+			cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0f);
 		}
 
-		cam.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
-		transform.Rotate(Vector3.up * mouseX);
+
 
 	}
 
@@ -61,6 +65,7 @@ public class PlayerCamera : NetworkBehaviour {
 			if (!isFree) {
 				cam.transform.position = camOriPos;
 				cam.transform.LookAt(transform);
+				yaw = 0f;
 			} else {
 				camOriPos = cam.transform.position;
 			}

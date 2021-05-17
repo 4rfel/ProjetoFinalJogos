@@ -79,6 +79,5 @@ public class PlayerPause : NetworkBehaviour {
 		}
 		yield return new WaitForSeconds(0.01f);
 		NetworkManager.Singleton.StopHost();
-
 	}
 }
