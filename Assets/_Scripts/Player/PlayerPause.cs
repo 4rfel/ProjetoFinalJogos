@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
 using MLAPI.SceneManagement;
 using MLAPI.Transports.PhotonRealtime;
+using MLAPI.Connection;
 
 
 public class PlayerPause : NetworkBehaviour {
@@ -33,9 +35,6 @@ public class PlayerPause : NetworkBehaviour {
 			} else {
 				Cursor.lockState = CursorLockMode.Locked;
 			}
-		}
-
-		if (IsLocalPlayer) {
 		}
 	}
 
@@ -71,13 +70,19 @@ public class PlayerPause : NetworkBehaviour {
 
 		NetworkSceneManager.SwitchScene("Menu");
 
-		System.Collections.Generic.List<MLAPI.Connection.NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
+		List<NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
 		while (clients.Count != 1) {
 			yield return new WaitForFixedUpdate();
-			NetworkManager.Singleton.DisconnectClient(clients[1].ClientId);
+			foreach(NetworkClient client in clients) {
+				if (NetworkManager.Singleton.ServerClientId != client.ClientId) {
+					NetworkManager.Singleton.DisconnectClient(client.ClientId);
+					break;
+				}
+			}
 			clients = NetworkManager.Singleton.ConnectedClientsList;
+			Debug.LogWarning(clients.Count);
 		}
-		yield return new WaitForSeconds(0.01f);
+		yield return new WaitForSeconds(0.1f);
 		NetworkManager.Singleton.StopHost();
 	}
 }

@@ -4,15 +4,18 @@ using MLAPI;
 using MLAPI.SceneManagement;
 using MLAPI.Transports.PhotonRealtime;
 
+
 public class MenuButtons : NetworkBehaviour {
 
 	[SerializeField] GameObject buttons;
 	[SerializeField] InputField roomName;
 	[SerializeField] Text log;
 	PhotonRealtimeTransport transport;
+	
 
 	private void Start() {
 		transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
+		
 	}
 
 	public void SetRoomName() {
@@ -27,6 +30,7 @@ public class MenuButtons : NetworkBehaviour {
 			str += (char) Random.Range(65, 90);
 		}
 		transport.RoomName = str;
+		
 		Camera.main.gameObject.SetActive(false);
 		NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
 		NetworkManager.Singleton.StartHost();
@@ -56,11 +60,15 @@ public class MenuButtons : NetworkBehaviour {
 		return HandleDisconnectClient;
 	}
 
-	private void HandleDisconnectClient(ulong obj) {
-		log.gameObject.SetActive(true);
-		log.text = "failed to join room: " + transport.RoomName;
-		buttons.SetActive(true);
-		Debug.Log(obj);
+	private void HandleDisconnectClient(ulong code) {
+		Debug.Log("disconnect code: " + code);
+		if (code == 2)
+			return;
+		if(code == 0) {
+			log.gameObject.SetActive(true);
+			log.text = "failed to join room: " + transport.RoomName;
+			buttons.SetActive(true);
+		}
 		return;
 	}
 
