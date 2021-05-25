@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 7787995029344184606}
   - component: {fileID: 7228083566985674010}
   - component: {fileID: 2977061077687595595}
+  - component: {fileID: 5894932875862546213}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -660,6 +661,18 @@ MonoBehaviour:
   tabCanvas: {fileID: 7370650305027634448}
   roomName: {fileID: 4219390397674674837}
   paused: 0
+--- !u!114 &5894932875862546213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905069836326903626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9735cd849e55b9248829552a13d66c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6799714492997459428
 GameObject:
   m_ObjectHideFlags: 0

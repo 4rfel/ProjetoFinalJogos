@@ -21,7 +21,7 @@ public class PlayerMovement : NetworkBehaviour {
 	private void Update() {
 		if (IsLocalPlayer) {
 			HandleForce();
-			HandleResetToLastPosition();
+			//HandleResetToLastPosition();
 		}
 	}
 
