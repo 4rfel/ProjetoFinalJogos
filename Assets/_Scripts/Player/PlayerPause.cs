@@ -19,14 +19,16 @@ public class PlayerPause : NetworkBehaviour {
 	public bool paused = false;
 
 	private void Start() {
-		pauseCanvas.SetActive(false);
-		tabCanvas.SetActive(false);
-		PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
-		roomName.text = transport.RoomName;
+		if (IsLocalPlayer) {
+			pauseCanvas.SetActive(false);
+			tabCanvas.SetActive(false);
+			PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
+			roomName.text = transport.RoomName;
+		}
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Escape)) {
+		if (IsLocalPlayer && Input.GetKeyDown(KeyCode.Escape)) {
 			paused = !paused;
 			pauseCanvas.SetActive(paused);
 			Cursor.visible = paused;
@@ -73,8 +75,8 @@ public class PlayerPause : NetworkBehaviour {
 		List<NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
 		while (clients.Count != 1) {
 			yield return new WaitForFixedUpdate();
-			foreach(NetworkClient client in clients) {
-				if (NetworkManager.Singleton.ServerClientId != client.ClientId) {
+			foreach (NetworkClient client in clients) {
+				if (NetworkManager.Singleton.LocalClientId != client.ClientId) {
 					NetworkManager.Singleton.DisconnectClient(client.ClientId);
 					break;
 				}

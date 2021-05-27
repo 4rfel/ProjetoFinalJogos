@@ -12,10 +12,14 @@ public class PlayerMovement : NetworkBehaviour {
 	Vector3 prePosition;
 
 	Rigidbody rb;
+	PlayerInfo playerInfo;
 
 	void Start() {
-		currentForce = minForce;
-		rb = GetComponent<Rigidbody>();
+		if (IsLocalPlayer) {
+			currentForce = minForce;
+			rb = GetComponent<Rigidbody>();
+			playerInfo = GetComponent<PlayerInfo>();
+		}
 	}
 
 	private void Update() {
@@ -28,9 +32,12 @@ public class PlayerMovement : NetworkBehaviour {
 	void FixedUpdate() {
 		if (IsLocalPlayer) {
 			if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.magnitude < velThreshhold) {
+				//Debug.Log()
 				prePosition = rb.position;
 				rb.AddForce(currentForce * transform.forward, ForceMode.VelocityChange);
+				//rb.velocity = transform.forward * 100;
 				currentForce = 0;
+				playerInfo.AddHit();
 			}
 		}
 	}

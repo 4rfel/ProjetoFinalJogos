@@ -15,11 +15,11 @@ public class HoleLogic : NetworkBehaviour {
 
 	void Start() {
 		quantPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
-		Debug.Log(quantPlayers);
 	}
 
 	private void OnTriggerEnter(Collider collider) {
 		collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		
 		quantPlayersFinished++;
 		if (quantPlayersFinished == quantPlayers) {
 			StartCoroutine(ChangeHole());

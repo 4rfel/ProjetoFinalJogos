@@ -7,6 +7,7 @@ public class StartGame : NetworkBehaviour {
 	void Start() {
 		if (IsHost) {
 			gameObject.SetActive(true);
+			
 		} else {
 			gameObject.SetActive(false);
 		}
