@@ -40,7 +40,7 @@ public class PlayerTab : NetworkBehaviour {
 						ulong playerId;
 						int playerHits;
 						(playerHits, playerId, playerName) = player.GetHits();
-						//Debug.Log("player: " + playerId + " has " + playerHits + " hits");
+						Debug.Log("player: " + playerId + " has " + playerHits + " hits");
 					}
 					Debug.Log(players.Count);
 				} else {

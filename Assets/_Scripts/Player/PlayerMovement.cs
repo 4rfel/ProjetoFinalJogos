@@ -13,12 +13,14 @@ public class PlayerMovement : NetworkBehaviour {
 
 	Rigidbody rb;
 	PlayerInfo playerInfo;
+	PlayerSoundController soundController;
 
 	void Start() {
 		if (IsLocalPlayer) {
 			currentForce = minForce;
 			rb = GetComponent<Rigidbody>();
 			playerInfo = GetComponent<PlayerInfo>();
+			soundController = GetComponent<PlayerSoundController>();
 		}
 	}
 
@@ -32,6 +34,7 @@ public class PlayerMovement : NetworkBehaviour {
 	void FixedUpdate() {
 		if (IsLocalPlayer) {
 			if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.magnitude < velThreshhold) {
+				soundController.PlaySound("hit");
 				//Debug.Log()
 				prePosition = rb.position;
 				rb.AddForce(currentForce * transform.forward, ForceMode.VelocityChange);
