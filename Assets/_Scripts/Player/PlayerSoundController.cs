@@ -11,11 +11,18 @@ public class PlayerSoundController : NetworkBehaviour {
 	[SerializeField] AudioSource soundEffectAudioSource;
 	public Slider soundEffectsAudioVolume;
 
+	AudioClip music;
 	[SerializeField] AudioSource BackgroundAudioSource;
 	public Slider BackgroundAudioVolume;
+	
 
 	private void Start() {
 		hit = Resources.Load<AudioClip>("hitting-ball");
+		music = Resources.Load<AudioClip>("bg");
+        BackgroundAudioSource.loop = true;
+        BackgroundAudioSource.clip = music;
+        BackgroundAudioSource.Play();
+       
 	}
 
 	private void Update() {
@@ -42,6 +49,7 @@ public class PlayerSoundController : NetworkBehaviour {
 
 	private void OnCollisionEnter(Collision collision) {
 		//PlaySound("hit");
+		print(collision.gameObject.name);
 		switch (collision.gameObject.tag) {
 			case "Player":
 				PlaySound("hit");
