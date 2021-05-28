@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.46250397, g: 0.52887404, b: 0.6115582, a: 1}
+  m_IndirectSpecularColor: {r: 0.46250433, g: 0.528874, b: 0.61155754, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -468,8 +468,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 40.000008}
-  m_Center: {x: 0.5000001, y: 0.49999997, z: -20.000004}
+  m_Size: {x: 69.93269, y: 4.378811, z: 40.000008}
+  m_Center: {x: -33.96638, y: 2.1894054, z: -20.000004}
 --- !u!1 &137569764
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21018
+  m_Name: pb_Mesh20326
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1148,8 +1148,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 40}
-  m_Center: {x: 0.5, y: 0.49999997, z: -20}
+  m_Size: {x: 86.941475, y: 10.162972, z: 40}
+  m_Center: {x: 43.470737, y: 5.081486, z: -20}
 --- !u!1 &767722261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20972
+  m_Name: pb_Mesh20272
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1736,15 +1736,15 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 40.000008}
-  m_Center: {x: 0.5000001, y: 0.49999997, z: -20.000004}
+  m_Size: {x: 53.710297, y: 6.6098676, z: 40.000008}
+  m_Center: {x: 26.855158, y: 3.3049338, z: -20.000006}
 --- !u!43 &1086914780
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21036
+  m_Name: pb_Mesh20344
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2335,8 +2335,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372111988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.14, y: -0.07, z: 99.9}
-  m_LocalScale: {x: 40.355125, y: 32.570007, z: 2.488117}
+  m_LocalPosition: {x: 4.54, y: -0.07, z: 99.9}
+  m_LocalScale: {x: 6.6800346, y: 14.401325, z: 2.488117}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2352,15 +2352,15 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 40}
-  m_Center: {x: 0.5, y: 0.49999997, z: -20}
+  m_Size: {x: 21.93878, y: 5.3398395, z: 72.49864}
+  m_Center: {x: -9.969387, y: 2.6699197, z: -17.782297}
 --- !u!43 &1965004443
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20994
+  m_Name: pb_Mesh20302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

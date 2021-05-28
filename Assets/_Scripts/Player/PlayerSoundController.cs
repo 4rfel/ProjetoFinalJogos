@@ -49,7 +49,6 @@ public class PlayerSoundController : NetworkBehaviour {
 
 	private void OnCollisionEnter(Collision collision) {
 		//PlaySound("hit");
-		print(collision.gameObject.name);
 		switch (collision.gameObject.tag) {
 			case "Player":
 				PlaySound("hit");
