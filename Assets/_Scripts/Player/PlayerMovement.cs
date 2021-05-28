@@ -9,7 +9,7 @@ public class PlayerMovement : NetworkBehaviour {
 	float currentForce;
 	float velThreshhold = 0.01f;
 
-	Vector3 prePosition;
+	public Vector3 prePosition;
 
 	Rigidbody rb;
 	PlayerInfo playerInfo;
@@ -45,7 +45,7 @@ public class PlayerMovement : NetworkBehaviour {
 		}
 	}
 
-	void HandleResetToLastPosition() {
+	public void HandleResetToLastPosition() {
 		if (Input.GetKey(KeyCode.R) && rb.velocity.magnitude < velThreshhold)
 			rb.position = prePosition;
 	}
