@@ -20,6 +20,10 @@ public class SceneChangeHandler : NetworkBehaviour {
 				GameObject spawnpoint = GameObject.FindGameObjectWithTag("Spawnpoint");
 				if (spawnpoint != null) {
 					transform.position = spawnpoint.transform.position;
+					GetComponent<SphereCollider>().enabled = true;
+					GetComponent<Rigidbody>().useGravity = true;
+					GetComponent<Rigidbody>().velocity = Vector3.zero;
+					GetComponentInChildren<MeshRenderer>().enabled = true;
 					hasSceneChanged = false;
 				}
 			}

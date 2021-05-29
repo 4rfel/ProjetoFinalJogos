@@ -19,18 +19,22 @@ public class HoleLogic : NetworkBehaviour {
 
 	private void OnTriggerEnter(Collider collider) {
 
+
+		collider.gameObject.GetComponent<SphereCollider>().enabled = false;
+		collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
 		collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		collider.gameObject.GetComponent<Transform>().position = new Vector3(0,-500,0);
-		
+
 		quantPlayersFinished++;
 		if (quantPlayersFinished == quantPlayers) {
 			StartCoroutine(ChangeHole());
+		} else {
+			collider.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 		}
 	}
 
 	IEnumerator ChangeHole() {
 		print(SceneManager.GetActiveScene().name);
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(2f);
 		NextHoleServerRpc();
 	}
 

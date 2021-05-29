@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3006810882092949078}
   - component: {fileID: 1899728624126240685}
+  - component: {fileID: 8605402347405289412}
   m_Layer: 0
   m_Name: spawnpoint
   m_TagString: Spawnpoint
@@ -44,3 +45,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.9066367, y: 1.4913536, z: 5.1126866}
   m_Center: {x: 0.1833508, y: 0.59950596, z: -0.41282058}
+--- !u!114 &8605402347405289412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006810882092949079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bd834389ce7ba4881e9ff83872b793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

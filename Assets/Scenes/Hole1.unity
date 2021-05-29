@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.46250397, g: 0.52887404, b: 0.6115582, a: 1}
+  m_IndirectSpecularColor: {r: 0.46250433, g: 0.528874, b: 0.61155754, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -468,8 +468,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 40.000008}
-  m_Center: {x: 0.5000001, y: 0.49999997, z: -20.000004}
+  m_Size: {x: 83.82085, y: 12.307245, z: 40.000008}
+  m_Center: {x: -40.91043, y: 6.1536226, z: -20.000004}
 --- !u!1 &137569764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756465672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 309.3, y: -0.07, z: 99.9}
+  m_LocalPosition: {x: 307.4, y: -0.07, z: 99.9}
   m_LocalScale: {x: 3.0738177, y: 15, z: 2.488117}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1148,8 +1148,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 40}
-  m_Center: {x: 0.5, y: 0.49999997, z: -20}
+  m_Size: {x: 78.30953, y: 12.285104, z: 105.22041}
+  m_Center: {x: 39.154766, y: 6.142552, z: 12.610202}
 --- !u!1 &767722261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,15 +1736,15 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.99999994, z: 40.000008}
-  m_Center: {x: 0.5000001, y: 0.49999997, z: -20.000004}
+  m_Size: {x: 48.061485, y: 19.27282, z: 73.555016}
+  m_Center: {x: 24.030756, y: 9.147199, z: -3.2224975}
 --- !u!43 &1086914780
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21036
+  m_Name: pb_Mesh16484
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2335,8 +2335,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372111988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.14, y: -0.07, z: 99.9}
-  m_LocalScale: {x: 40.355125, y: 32.570007, z: 2.488117}
+  m_LocalPosition: {x: 10, y: -0.07, z: 99.9}
+  m_LocalScale: {x: 3.073816, y: 15, z: 2.488117}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2352,8 +2352,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 40}
-  m_Center: {x: 0.5, y: 0.49999997, z: -20}
+  m_Size: {x: 74.35044, y: 18.398003, z: 241.76689}
+  m_Center: {x: -36.17523, y: 9.199001, z: -4.0842633}
 --- !u!43 &1965004443
 Mesh:
   m_ObjectHideFlags: 0
