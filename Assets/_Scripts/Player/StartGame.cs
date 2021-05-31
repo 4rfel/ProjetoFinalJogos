@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using MLAPI;
 using MLAPI.SceneManagement;
+using MLAPI.Messaging;
 
 public class StartGame : NetworkBehaviour {
 
@@ -17,7 +18,18 @@ public class StartGame : NetworkBehaviour {
 		if (IsHost) {
 			if (Input.GetKeyDown(KeyCode.Q)) {
 				NetworkSceneManager.SwitchScene("Hole1");
+				ResetScoreServerRpc();
 			}
 		}
+	}
+
+	[ServerRpc]
+	void ResetScoreServerRpc() {
+		ResetScoreClientRpc();
+	}
+
+	[ClientRpc]
+	void ResetScoreClientRpc() {
+		GetComponent<PlayerInfo>().ResetScore();
 	}
 }

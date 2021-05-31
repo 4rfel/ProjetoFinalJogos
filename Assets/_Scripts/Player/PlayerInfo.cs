@@ -32,6 +32,11 @@ public class PlayerInfo : NetworkBehaviour {
 	}
 
 
+	public void ResetScore() {
+		hits.Value = 0;
+	}
+
+
 	private void Update() {
 		// TODO:
 		//		- change nick while on lobby

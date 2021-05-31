@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 15544783}
   m_Layer: 0
   m_Name: WaterCollider (1)
-  m_TagString: water
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,83 +194,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 93.784546, y: 2.877388, z: 189.57341}
-  m_Center: {x: -273.07898, y: 0.29423904, z: 180.65494}
---- !u!1 &22050208
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 22050209}
-  - component: {fileID: 22050212}
-  - component: {fileID: 22050211}
-  - component: {fileID: 22050210}
-  m_Layer: 0
-  m_Name: WaterCollider (2)
-  m_TagString: water
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &22050209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22050208}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 172.56769, y: -63.553123, z: -142.70625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 726602920}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &22050210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22050208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cfd828a0cf84442292b2b904cd2953e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &22050211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22050208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 8148936407109354158
-  PrefabHashGenerator: GameObject
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
---- !u!65 &22050212
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22050208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 85.52673, y: 2.877388, z: 189.57343}
-  m_Center: {x: 28.14862, y: 0.29423904, z: 180.65494}
+  m_Size: {x: 392.86066, y: 2.877388, z: 189.57343}
+  m_Center: {x: -123.540924, y: 0.29423904, z: 180.65494}
 --- !u!1 &53612058
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +228,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 45.295506, y: 11.237836, z: 197.7896}
-  m_Center: {x: -21.647757, y: 5.618918, z: 58.894794}
+  m_Size: {x: 45.295506, y: 46.554817, z: 197.7896}
+  m_Center: {x: -21.647757, y: 23.277409, z: 58.894794}
 --- !u!64 &53612060
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1263,8 +1188,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 93.849266, y: 18.675554, z: 83.46748}
-  m_Center: {x: -45.924656, y: 9.337777, z: 1.7337389}
+  m_Size: {x: 93.849266, y: 45.822353, z: 83.46748}
+  m_Center: {x: -45.924656, y: 22.911177, z: 1.7337389}
 --- !u!64 &592695067
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1612,8 +1537,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 40}
-  m_Center: {x: 0.5, y: 0.49999997, z: -20}
+  m_Size: {x: 0.9999998, y: 11.50233, z: 194.15643}
+  m_Center: {x: 0.4999999, y: 5.751165, z: 57.07818}
 --- !u!64 &633174167
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1960,7 +1885,7 @@ GameObject:
   - component: {fileID: 726602920}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1978,7 +1903,6 @@ Transform:
   m_Children:
   - {fileID: 1561765923}
   - {fileID: 15544782}
-  - {fileID: 22050209}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3434,8 +3358,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 77.98231, y: 18.835678, z: 79.95533}
-  m_Center: {x: 38.991177, y: 9.417839, z: -0.022339761}
+  m_Size: {x: 77.98231, y: 48.457558, z: 79.95533}
+  m_Center: {x: 38.991177, y: 24.228779, z: -0.022339761}
 --- !u!64 &1440770709
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3783,8 +3707,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 63.35104, y: 10.147545, z: 201.0581}
-  m_Center: {x: 31.67552, y: 5.0737724, z: 60.529064}
+  m_Size: {x: 63.35104, y: 26.556507, z: 201.0581}
+  m_Center: {x: 31.67552, y: 13.278254, z: 60.529064}
 --- !u!64 &1498243158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5299,7 +5223,7 @@ GameObject:
   - component: {fileID: 1561765924}
   m_Layer: 0
   m_Name: WaterCollider
-  m_TagString: water
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5315,8 +5239,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 202.78465, y: 2.877388, z: 289.4573}
-  m_Center: {x: -113.837944, y: 0.2942391, z: 130.713}
+  m_Size: {x: 202.78465, y: 2.877388, z: 94.95006}
+  m_Center: {x: -113.837944, y: 0.29423904, z: 33.45936}
 --- !u!4 &1561765923
 Transform:
   m_ObjectHideFlags: 0
@@ -5693,7 +5617,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18938
+  m_Name: pb_Mesh16914
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

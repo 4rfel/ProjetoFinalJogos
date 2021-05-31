@@ -24,6 +24,9 @@ public class SceneChangeHandler : NetworkBehaviour {
 					GetComponent<Rigidbody>().useGravity = true;
 					GetComponent<Rigidbody>().velocity = Vector3.zero;
 					GetComponentInChildren<MeshRenderer>().enabled = true;
+					GetComponentInChildren<PlayerCamera>().finished.Value = false;
+					GetComponentInChildren<PlayerCamera>().isFree = false;
+					GetComponentInChildren<PlayerCamera>().ResetCam();
 					hasSceneChanged = false;
 				}
 			}

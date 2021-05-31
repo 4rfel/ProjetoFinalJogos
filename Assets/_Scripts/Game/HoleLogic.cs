@@ -23,6 +23,7 @@ public class HoleLogic : NetworkBehaviour {
 		collider.gameObject.GetComponent<SphereCollider>().enabled = false;
 		collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
 		collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		collider.gameObject.GetComponentInChildren<PlayerCamera>().Finish();
 
 		quantPlayersFinished++;
 		if (quantPlayersFinished == quantPlayers) {
@@ -33,7 +34,6 @@ public class HoleLogic : NetworkBehaviour {
 	}
 
 	IEnumerator ChangeHole() {
-		print(SceneManager.GetActiveScene().name);
 		yield return new WaitForSeconds(2f);
 		NextHoleServerRpc();
 	}

@@ -7,7 +7,7 @@ TagManager:
   - NetworkManager
   - RoomName
   - Spawnpoint
-  - water
+  - Water
   layers:
   - Default
   - TransparentFX

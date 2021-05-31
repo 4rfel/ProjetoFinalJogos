@@ -42,6 +42,10 @@ public class PlayerMovement : NetworkBehaviour {
 				currentForce = 0;
 				playerInfo.AddHit();
 			}
+
+			if(rb.transform.position.y < -100) {
+				rb.position = prePosition;
+			}
 		}
 	}
 

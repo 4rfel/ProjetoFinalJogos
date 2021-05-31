@@ -6,8 +6,9 @@ using MLAPI;
 
 public class PlayerSoundController : NetworkBehaviour {
 
-
 	AudioClip hit;
+	AudioClip water;
+
 	[SerializeField] AudioSource soundEffectAudioSource;
 	public Slider soundEffectsAudioVolume;
 
@@ -18,6 +19,7 @@ public class PlayerSoundController : NetworkBehaviour {
 
 	private void Start() {
 		hit = Resources.Load<AudioClip>("hitting-ball");
+		water = Resources.Load<AudioClip>("hitting-ball");
 		music = Resources.Load<AudioClip>("bg");
         BackgroundAudioSource.loop = true;
         BackgroundAudioSource.clip = music;
@@ -52,6 +54,10 @@ public class PlayerSoundController : NetworkBehaviour {
 		switch (collision.gameObject.tag) {
 			case "Player":
 				PlaySound("hit");
+				break;
+			case "Water":
+				Debug.Log("play water sound");
+				PlaySound("water");
 				break;
 		}
 	}

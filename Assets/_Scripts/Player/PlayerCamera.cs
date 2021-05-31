@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using MLAPI;
+using MLAPI.NetworkVariable;
+using System.Collections.Generic;
 
 public class PlayerCamera : NetworkBehaviour {
 
@@ -8,18 +10,30 @@ public class PlayerCamera : NetworkBehaviour {
 	[SerializeField] PlayerPause playerPause;
 
 	Vector3 camOriPos;
+	Vector3 camOriLocalPos;
+	Quaternion camOriLocalRot;
 
 	float pitch = 0f;
 	float yaw = 0f;
 	float mouseSensitivity = 300f;
 	float freeCamSpeed = 500f;
 
+	public NetworkVariable<bool> finished = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
+
 	public bool isFree = false;
 
 	void Start() {
 		if (IsLocalPlayer) {
 			cam.SetActive(true);
+			camOriLocalPos = cam.transform.localPosition;
+			camOriLocalRot = cam.transform.localRotation;
 		}
+	}
+
+	public void ResetCam() {
+		cam.transform.localRotation = camOriLocalRot;
+		cam.transform.localPosition = camOriLocalPos;
+
 	}
 
 	void Update() {
@@ -32,6 +46,14 @@ public class PlayerCamera : NetworkBehaviour {
 			if (isFree) {
 				HandleCameraFreeMode();
 			}
+			if (finished.Value)
+				isFree = true;
+		}
+	}
+
+	public void Finish() {
+		if (IsLocalPlayer) {
+			finished.Value = true;			
 		}
 	}
 
@@ -47,9 +69,6 @@ public class PlayerCamera : NetworkBehaviour {
 			yaw += mouseX;
 			cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0f);
 		}
-
-
-
 	}
 
 	void HandleCameraFreeMode() {
