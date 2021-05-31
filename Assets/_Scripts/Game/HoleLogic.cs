@@ -8,23 +8,18 @@ using MLAPI.SceneManagement;
 
 public class HoleLogic : NetworkBehaviour {
 
-	int quantPlayers;
 	int quantPlayersFinished = 0;
 
 	[SerializeField] string nextScene;
 
-	void Start() {
-		quantPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
-	}
-
 	private void OnTriggerEnter(Collider collider) {
+		int quantPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
 
 
 		collider.gameObject.GetComponent<SphereCollider>().enabled = false;
 		collider.gameObject.GetComponent<Rigidbody>().useGravity = false;
 		collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		collider.gameObject.GetComponentInChildren<PlayerCamera>().Finish();
-
 		quantPlayersFinished++;
 		if (quantPlayersFinished == quantPlayers) {
 			StartCoroutine(ChangeHole());

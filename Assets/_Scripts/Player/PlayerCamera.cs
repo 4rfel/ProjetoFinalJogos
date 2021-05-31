@@ -9,7 +9,6 @@ public class PlayerCamera : NetworkBehaviour {
 
 	[SerializeField] PlayerPause playerPause;
 
-	Vector3 camOriPos;
 	Vector3 camOriLocalPos;
 	Quaternion camOriLocalRot;
 
@@ -22,6 +21,8 @@ public class PlayerCamera : NetworkBehaviour {
 
 	public bool isFree = false;
 
+	int currentCam = 0;
+
 	void Start() {
 		if (IsLocalPlayer) {
 			cam.SetActive(true);
@@ -33,7 +34,6 @@ public class PlayerCamera : NetworkBehaviour {
 	public void ResetCam() {
 		cam.transform.localRotation = camOriLocalRot;
 		cam.transform.localPosition = camOriLocalPos;
-
 	}
 
 	void Update() {
@@ -46,14 +46,17 @@ public class PlayerCamera : NetworkBehaviour {
 			if (isFree) {
 				HandleCameraFreeMode();
 			}
-			if (finished.Value)
-				isFree = true;
+			if (finished.Value) {
+				//isFree = true;
+				HandleSpectatePlayer();
+			}
 		}
 	}
 
 	public void Finish() {
 		if (IsLocalPlayer) {
-			finished.Value = true;			
+			finished.Value = true;
+			HandleSpectatePlayer();
 		}
 	}
 
@@ -65,7 +68,6 @@ public class PlayerCamera : NetworkBehaviour {
 			transform.Rotate(Vector3.up * mouseX);
 		} else {
 			pitch -= mouseY;
-			cam.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 			yaw += mouseX;
 			cam.transform.localRotation = Quaternion.Euler(pitch, yaw, 0f);
 		}
@@ -82,12 +84,39 @@ public class PlayerCamera : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.E)) {
 			isFree = !isFree;
 			if (!isFree) {
-				cam.transform.position = camOriPos;
-				cam.transform.LookAt(transform);
+				ResetCam();
 				yaw = 0f;
-			} else {
-				camOriPos = cam.transform.position;
 			}
+		}
+	}
+
+
+	void HandleSpectatePlayer() {
+		if (IsLocalPlayer && finished.Value) {
+			GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+			if (players.Length == 1)
+				return;
+
+			List<GameObject> playersNotFinished = new List<GameObject>();
+			foreach (GameObject player in players) {
+				if (!player.GetComponent<PlayerCamera>().finished.Value) {
+					playersNotFinished.Add(player);
+				}
+			}
+
+			if (playersNotFinished.Count == 0)
+				return;
+
+			if (Input.GetKeyDown(KeyCode.D))
+				currentCam++;
+			else if (Input.GetKeyDown(KeyCode.A))
+				currentCam--;
+
+			currentCam %= playersNotFinished.Count;
+
+			Vector3 pos = playersNotFinished[currentCam].transform.position;
+
+			transform.position = new Vector3(pos.x, transform.position.y, pos.z);
 		}
 	}
 }
