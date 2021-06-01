@@ -28,6 +28,9 @@ public class SceneChangeHandler : NetworkBehaviour {
 					GetComponentInChildren<PlayerCamera>().isFree = false;
 					GetComponentInChildren<PlayerCamera>().ResetCam();
 					hasSceneChanged = false;
+					if(SceneManager.GetActiveScene().name == "Hole1") {
+						GetComponent<PlayerInfo>().ResetScore();
+					}
 				}
 			}
 		}

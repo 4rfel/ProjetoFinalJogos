@@ -17,20 +17,8 @@ public class StartGame : NetworkBehaviour {
 	void Update() {
 		if (IsHost) {
 			if (Input.GetKeyDown(KeyCode.Q)) {
-				ResetScoreServerRpc();
 				NetworkSceneManager.SwitchScene("Hole1");
 			}
 		}
-	}
-
-	[ServerRpc]
-	void ResetScoreServerRpc() {
-		ResetScoreClientRpc();
-	}
-
-	[ClientRpc]
-	void ResetScoreClientRpc() {
-		Debug.Log("AAAAAAA");
-		GetComponent<PlayerInfo>().ResetScore();
 	}
 }

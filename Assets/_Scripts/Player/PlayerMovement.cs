@@ -6,6 +6,7 @@ public class PlayerMovement : NetworkBehaviour {
 	[SerializeField] GameObject forceCombo;
 	[SerializeField] GameObject forceIndicator;
 	[SerializeField] GameObject forceBar;
+	PlayerCamera playerCamera;
 
 	float minForce = 10f;
 	float maxForce = 500f;
@@ -26,38 +27,41 @@ public class PlayerMovement : NetworkBehaviour {
 			rb = GetComponent<Rigidbody>();
 			playerInfo = GetComponent<PlayerInfo>();
 			soundController = GetComponent<PlayerSoundController>();
+			playerCamera = GetComponent<PlayerCamera>();
 		}
 	}
 
 	void FixedUpdate() {
 		if (IsLocalPlayer) {
-			if (Input.GetMouseButton(0)) {
-				forceCombo.SetActive(true);
-				if (rising) {
-					currentForce += dForce;
-				} else {
-					currentForce -= dForce;
-				}
-				currentForce = Mathf.Clamp(currentForce, minForce, maxForce);
-				if (currentForce == maxForce) {
-					rising = false;
-				} else if (currentForce == minForce) {
-					rising = true;
-				}
-				float porcentagem = currentForce / maxForce * forceBar.transform.localScale.x;
-				forceIndicator.transform.localPosition = new Vector3(forceIndicator.transform.localPosition.x, porcentagem, forceIndicator.transform.localPosition.z);
+			if (rb.velocity.magnitude < velThreshhold) {
+				if (!playerCamera.finished.Value && Input.GetMouseButton(0)) {
+					forceCombo.SetActive(true);
+					if (rising) {
+						currentForce += dForce;
+					} else {
+						currentForce -= dForce;
+					}
+					currentForce = Mathf.Clamp(currentForce, minForce, maxForce);
+					if (currentForce == maxForce) {
+						rising = false;
+					} else if (currentForce == minForce) {
+						rising = true;
+					}
+					float porcentagem = currentForce / maxForce * forceBar.transform.localScale.x;
+					forceIndicator.transform.localPosition = new Vector3(forceIndicator.transform.localPosition.x, porcentagem, forceIndicator.transform.localPosition.z);
 
-			} else if(currentForce != minForce) {
-				forceCombo.SetActive(false);
-				soundController.PlaySound("hit");
-				prePosition = rb.position;
-				rb.AddForce(currentForce * transform.forward, ForceMode.VelocityChange);
-				currentForce = minForce;
-				playerInfo.AddHit();
+				} else if (currentForce != minForce) {
+					forceCombo.SetActive(false);
+					soundController.PlaySound("hit");
+					prePosition = rb.position;
+					rb.AddForce(currentForce * transform.forward, ForceMode.VelocityChange);
+					currentForce = minForce;
+					playerInfo.AddHit();
+				}
 			}
 			//Debug.Log(currentForce);
 
-			if(rb.transform.position.y < -100) {
+			if (rb.transform.position.y < -100) {
 				rb.position = prePosition;
 			}
 		}

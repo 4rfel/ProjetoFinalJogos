@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MLAPI;
-using MLAPI.Messaging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerTab : NetworkBehaviour {
 
 	[SerializeField] GameObject tab;
+	SpawnTabLine spawnTabLine;
 
 	List<PlayerInfo> players;
 	bool hasEveryoneJoined = false;
@@ -18,9 +18,8 @@ public class PlayerTab : NetworkBehaviour {
 
 	private void Start() {
 		players = new List<PlayerInfo>();
+		spawnTabLine = tab.GetComponent<SpawnTabLine>();
 	}
-
-
 
 	private void Update() {
 		if (IsLocalPlayer) {
@@ -33,21 +32,22 @@ public class PlayerTab : NetworkBehaviour {
 				hasEveryoneJoined = true;
 			}
 
-			if (Input.GetKey(KeyCode.Tab)) {
+			if (Input.GetKeyDown(KeyCode.Tab)) {
+				tab.SetActive(true);
+				spawnTabLine.Clear();
 				if (players.Count != 0) {
 					foreach (PlayerInfo player in players) {
 						string playerName;
 						ulong playerId;
 						int playerHits;
 						(playerHits, playerId, playerName) = player.GetHits();
-						Debug.Log("player: " + playerId + " has " + playerHits + " hits");
+						spawnTabLine.SpawnLine(playerHits, playerId.ToString());
 					}
-					Debug.Log(players.Count);
-				} else {
-					Debug.Log("0 players");
 				}
-			}
+			} else if (Input.GetKeyUp(KeyCode.Tab)) {
 
+				tab.SetActive(false);
+			}
 		}
 	}
 }
