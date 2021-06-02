@@ -4,9 +4,19 @@ using UnityEngine;
 using MLAPI;
 
 public class rotate : NetworkBehaviour {
-	// Start is called before the first frame update
+
+	Vector3 angularVelocity;
+	Rigidbody rb;
+
 	void Start() {
-		GetComponent<Rigidbody>().AddTorque(transform.right * 200f, ForceMode.Acceleration);
-		// transform.Rotate(new Vector3(0f,0f,1f));
+		rb = GetComponent<Rigidbody>();
+		rb.angularVelocity = Vector3.right * 50f;
+		angularVelocity = rb.angularVelocity;
+	}
+
+	private void Update() {
+		if (rb.angularVelocity.magnitude != angularVelocity.magnitude) {
+			rb.angularVelocity = angularVelocity;
+		}
 	}
 }
