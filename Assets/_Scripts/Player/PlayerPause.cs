@@ -8,7 +8,6 @@ using MLAPI.SceneManagement;
 using MLAPI.Transports.PhotonRealtime;
 using MLAPI.Connection;
 
-
 public class PlayerPause : NetworkBehaviour {
 
 	[SerializeField] GameObject pauseCanvas;
@@ -16,7 +15,7 @@ public class PlayerPause : NetworkBehaviour {
 
 	[SerializeField] Text roomName;
 
-	public bool paused = false;
+	[HideInInspector] public bool paused = false;
 
 	private void Start() {
 		if (IsLocalPlayer) {

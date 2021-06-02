@@ -21,6 +21,7 @@ public class HoleLogic : NetworkBehaviour {
 		collider.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		collider.gameObject.GetComponentInChildren<PlayerCamera>().Finish();
 		quantPlayersFinished++;
+		Debug.Log(quantPlayersFinished + " " + quantPlayers);
 		if (quantPlayersFinished == quantPlayers) {
 			StartCoroutine(ChangeHole());
 		} else {
@@ -29,6 +30,7 @@ public class HoleLogic : NetworkBehaviour {
 	}
 
 	IEnumerator ChangeHole() {
+		quantPlayersFinished = 0;
 		yield return new WaitForSeconds(2f);
 		NextHoleServerRpc();
 	}

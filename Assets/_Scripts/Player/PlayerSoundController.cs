@@ -15,36 +15,40 @@ public class PlayerSoundController : NetworkBehaviour {
 	AudioClip music;
 	[SerializeField] AudioSource BackgroundAudioSource;
 	public Slider BackgroundAudioVolume;
-	
+
 
 	private void Start() {
 		hit = Resources.Load<AudioClip>("hitting-ball");
 		water = Resources.Load<AudioClip>("hitting-ball");
 		music = Resources.Load<AudioClip>("bg");
-        BackgroundAudioSource.loop = true;
-        BackgroundAudioSource.clip = music;
-        BackgroundAudioSource.Play();
-       
+		BackgroundAudioSource.loop = true;
+		BackgroundAudioSource.clip = music;
+		BackgroundAudioSource.Play();
+
 	}
 
 	private void Update() {
-		if (IsLocalPlayer) {
-			if (soundEffectsAudioVolume == null)
-				soundEffectAudioSource.volume = 1f;
-			else
-				soundEffectAudioSource.volume = soundEffectsAudioVolume.value;
+		if (soundEffectsAudioVolume == null)
+			soundEffectAudioSource.volume = 1f;
+		else
+			soundEffectAudioSource.volume = soundEffectsAudioVolume.value;
 
+		if (IsLocalPlayer) {
 			if (BackgroundAudioVolume == null)
 				BackgroundAudioSource.volume = 1f;
 			else
 				BackgroundAudioSource.volume = BackgroundAudioVolume.value;
-		}
+
+		} else { BackgroundAudioSource.volume = 0f; }
 	}
 
 	public void PlaySound(string clip) {
 		switch (clip) {
 			case "hit":
 				soundEffectAudioSource.PlayOneShot(hit);
+				break;
+			case "water":
+				soundEffectAudioSource.PlayOneShot(water);
 				break;
 		}
 	}
@@ -54,10 +58,6 @@ public class PlayerSoundController : NetworkBehaviour {
 		switch (collision.gameObject.tag) {
 			case "Player":
 				PlaySound("hit");
-				break;
-			case "Water":
-				Debug.Log("play water sound");
-				PlaySound("water");
 				break;
 		}
 	}

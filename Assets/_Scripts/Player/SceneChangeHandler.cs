@@ -23,8 +23,8 @@ public class SceneChangeHandler : NetworkBehaviour {
 					GetComponent<SphereCollider>().enabled = true;
 					GetComponent<Rigidbody>().useGravity = true;
 					GetComponent<Rigidbody>().velocity = Vector3.zero;
-					GetComponentInChildren<MeshRenderer>().enabled = true;
 					GetComponentInChildren<PlayerCamera>().finished.Value = false;
+					GetComponentInChildren<MeshRenderer>().enabled = true;
 					GetComponentInChildren<PlayerCamera>().isFree = false;
 					GetComponentInChildren<PlayerCamera>().ResetCam();
 					hasSceneChanged = false;
@@ -33,6 +33,9 @@ public class SceneChangeHandler : NetworkBehaviour {
 					}
 				}
 			}
+		}
+		if (hasSceneChanged) {
+			GetComponentInChildren<MeshRenderer>().enabled = true;
 		}
 	}
 }

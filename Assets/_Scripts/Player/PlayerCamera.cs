@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using MLAPI;
 using MLAPI.NetworkVariable;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ public class PlayerCamera : NetworkBehaviour {
 	[SerializeField] GameObject cam;
 
 	[SerializeField] PlayerPause playerPause;
+	[SerializeField] Slider mouseSensitivity;
 
 	Vector3 camOriLocalPos;
 	Quaternion camOriLocalRot;
 
 	float pitch = 0f;
 	float yaw = 0f;
-	float mouseSensitivity = 300f;
 	float freeCamSpeed = 500f;
 
 	public NetworkVariable<bool> finished = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
@@ -22,6 +23,7 @@ public class PlayerCamera : NetworkBehaviour {
 	public bool isFree = false;
 
 	int currentCam = 0;
+	[SerializeField] LayerMask layerWalls;
 
 	void Start() {
 		if (IsLocalPlayer) {
@@ -40,16 +42,26 @@ public class PlayerCamera : NetworkBehaviour {
 		if (IsLocalPlayer) {
 			if (playerPause.paused)
 				return;
-
+			HandleOpacity();
 			Handlelook();
 			HandleChangeCamMode();
 			if (isFree) {
 				HandleCameraFreeMode();
 			}
 			if (finished.Value) {
-				//isFree = true;
 				HandleSpectatePlayer();
 			}
+		}
+	}
+
+	void HandleOpacity() {
+		Vector3 dir = (transform.position - cam.transform.position);
+		float dst = dir.magnitude;
+		dir = dir.normalized;
+
+		RaycastHit hit;
+		if (Physics.Raycast(cam.transform.position, dir, out hit, dst, layerWalls)) {
+			//hit.collider.GetComponent<MeshRenderer>().enabled = false;
 		}
 	}
 
@@ -61,8 +73,8 @@ public class PlayerCamera : NetworkBehaviour {
 	}
 
 	void Handlelook() {
-		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-		float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity.value * Time.deltaTime;
+		float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity.value * Time.deltaTime;
 
 		if (!isFree) {
 			transform.Rotate(Vector3.up * mouseX);

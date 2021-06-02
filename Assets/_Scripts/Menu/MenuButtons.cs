@@ -31,7 +31,6 @@ public class MenuButtons : NetworkBehaviour {
 		}
 		transport.RoomName = str;
 		
-		Camera.main.gameObject.SetActive(false);
 		NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
 		NetworkManager.Singleton.StartHost();
 		NetworkSceneManager.SwitchScene("Lobby");

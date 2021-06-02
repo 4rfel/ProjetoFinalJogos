@@ -9,10 +9,11 @@ public class PlayerMovement : NetworkBehaviour {
 	PlayerCamera playerCamera;
 
 	float minForce = 10f;
-	float maxForce = 500f;
-	float dForce = 10f;
+	float maxForce = 250;
+	float dForce = 5f;
 	float currentForce;
 	float velThreshhold = 0.01f;
+	float heightResetPosition = -100f;
 	bool rising = true;
 
 	public Vector3 prePosition;
@@ -20,6 +21,7 @@ public class PlayerMovement : NetworkBehaviour {
 	Rigidbody rb;
 	PlayerInfo playerInfo;
 	PlayerSoundController soundController;
+	PlayerPause playerPause;
 
 	void Start() {
 		if (IsLocalPlayer) {
@@ -28,13 +30,15 @@ public class PlayerMovement : NetworkBehaviour {
 			playerInfo = GetComponent<PlayerInfo>();
 			soundController = GetComponent<PlayerSoundController>();
 			playerCamera = GetComponent<PlayerCamera>();
+			playerPause = GetComponent<PlayerPause>();
+
 		}
 	}
 
 	void FixedUpdate() {
 		if (IsLocalPlayer) {
 			if (rb.velocity.magnitude < velThreshhold) {
-				if (!playerCamera.finished.Value && Input.GetMouseButton(0)) {
+				if (!playerCamera.finished.Value && !playerPause.paused && Input.GetMouseButton(0)) {
 					forceCombo.SetActive(true);
 					if (rising) {
 						currentForce += dForce;
@@ -59,9 +63,8 @@ public class PlayerMovement : NetworkBehaviour {
 					playerInfo.AddHit();
 				}
 			}
-			//Debug.Log(currentForce);
-
-			if (rb.transform.position.y < -100) {
+			if (rb.transform.position.y < heightResetPosition) {
+				rb.velocity = Vector3.zero;
 				rb.position = prePosition;
 			}
 		}
