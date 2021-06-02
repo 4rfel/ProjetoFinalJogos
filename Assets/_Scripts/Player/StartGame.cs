@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using MLAPI;
 using MLAPI.SceneManagement;
-using MLAPI.Messaging;
 
 public class StartGame : NetworkBehaviour {
 

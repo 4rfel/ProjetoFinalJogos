@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using MLAPI;
 using MLAPI.NetworkVariable;
 using System.Collections.Generic;
+using System.Collections;
+using System;
 
 public class PlayerCamera : NetworkBehaviour {
 
@@ -24,6 +26,9 @@ public class PlayerCamera : NetworkBehaviour {
 
 	int currentCam = 0;
 	[SerializeField] LayerMask layerWalls;
+
+	Material currentAlphaChanged;
+	Material prevAlphaChanged;
 
 	void Start() {
 		if (IsLocalPlayer) {
@@ -51,6 +56,24 @@ public class PlayerCamera : NetworkBehaviour {
 			if (finished.Value) {
 				HandleSpectatePlayer();
 			}
+
+			HandleResetAlpha();
+		}
+	}
+
+	private void HandleResetAlpha() {
+		if (currentAlphaChanged != prevAlphaChanged) {
+			Color albedo;
+			if (prevAlphaChanged != null) {
+				albedo = prevAlphaChanged.GetColor("_Color");
+				albedo.a = 1f;
+				prevAlphaChanged.SetColor("_Color", albedo);
+			} else {
+				albedo = currentAlphaChanged.GetColor("_Color");
+				albedo.a = 1f;
+				currentAlphaChanged.SetColor("_Color", albedo);
+			}
+			prevAlphaChanged = currentAlphaChanged;
 		}
 	}
 
@@ -58,10 +81,17 @@ public class PlayerCamera : NetworkBehaviour {
 		Vector3 dir = (transform.position - cam.transform.position);
 		float dst = dir.magnitude;
 		dir = dir.normalized;
-
+		Debug.DrawRay(cam.transform.position, dir * dst, Color.red);
 		RaycastHit hit;
 		if (Physics.Raycast(cam.transform.position, dir, out hit, dst, layerWalls)) {
-			//hit.collider.GetComponent<MeshRenderer>().enabled = false;
+			Debug.DrawLine(cam.transform.position, hit.transform.position, Color.green);
+			Material mat = hit.collider.GetComponent<MeshRenderer>().material;
+			Color albedo = mat.GetColor("_Color");
+			albedo.a = 0.2f;
+			mat.SetColor("_Color", albedo);
+			currentAlphaChanged = mat;
+		} else {
+			currentAlphaChanged = null;
 		}
 	}
 
