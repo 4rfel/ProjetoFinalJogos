@@ -24,7 +24,7 @@ public class PlayerTab : NetworkBehaviour {
 	private void Update() {
 		if (IsLocalPlayer) {
 
-			if (!hasEveryoneJoined && (SceneManager.GetActiveScene().name == "Hole1" || SceneManager.GetActiveScene().name == "Hole2")) {
+			if (!hasEveryoneJoined && (SceneManager.GetActiveScene().name == "Hole1" || SceneManager.GetActiveScene().name == "Hole2"|| SceneManager.GetActiveScene().name == "Hole3")) {
 				GameObject[] playerGameobject = GameObject.FindGameObjectsWithTag("Player");
 				foreach (GameObject player in playerGameobject) {
 					players.Add(player.GetComponent<PlayerInfo>());
