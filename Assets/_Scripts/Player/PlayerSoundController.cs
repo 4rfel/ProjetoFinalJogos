@@ -20,7 +20,7 @@ public class PlayerSoundController : NetworkBehaviour {
 	private void Start() {
 		hit = Resources.Load<AudioClip>("hitting-ball");
 		water = Resources.Load<AudioClip>("hitting-ball");
-		music = Resources.Load<AudioClip>("bg");
+		music = Resources.Load<AudioClip>("water");
 		BackgroundAudioSource.loop = true;
 		BackgroundAudioSource.clip = music;
 		BackgroundAudioSource.Play();
