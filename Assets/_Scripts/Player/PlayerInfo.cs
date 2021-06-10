@@ -9,6 +9,8 @@ public class PlayerInfo : NetworkBehaviour {
 
 	[SerializeField] NetworkVariable<int> hits = new NetworkVariable<int>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, 0);
 	[SerializeField] NetworkVariable<string> playerName = new NetworkVariable<string>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, "");
+
+
 	[SerializeField] NetworkVariable<ulong> playerId = new NetworkVariable<ulong>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, 0);
 
 	void Start() {
@@ -26,6 +28,11 @@ public class PlayerInfo : NetworkBehaviour {
 			hits.Value += 1;
 		}
 	}
+	public void setName(string name) {
+		if (IsLocalPlayer) {
+			playerName.Value = name;
+		}
+	}
 
 	public (int, ulong, string) GetHits() {
 		return (hits.Value, playerId.Value, playerName.Value);
@@ -34,11 +41,5 @@ public class PlayerInfo : NetworkBehaviour {
 
 	public void ResetScore() {
 		hits.Value = 0;
-	}
-
-
-	private void Update() {
-		// TODO:
-		//		- change nick while on lobby
 	}
 }

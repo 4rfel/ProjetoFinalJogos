@@ -41,7 +41,7 @@ public class PlayerTab : NetworkBehaviour {
 						ulong playerId;
 						int playerHits;
 						(playerHits, playerId, playerName) = player.GetHits();
-						spawnTabLine.SpawnLine(playerHits, playerId.ToString());
+						spawnTabLine.SpawnLine(playerHits, playerName);
 					}
 				}
 			} else if (Input.GetKeyUp(KeyCode.Tab)) {

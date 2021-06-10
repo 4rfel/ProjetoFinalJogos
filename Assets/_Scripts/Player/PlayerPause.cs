@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MLAPI;
 using MLAPI.SceneManagement;
-using MLAPI.Transports.PhotonRealtime;
 using MLAPI.Connection;
 
 public class PlayerPause : NetworkBehaviour {
@@ -13,16 +11,12 @@ public class PlayerPause : NetworkBehaviour {
 	[SerializeField] GameObject pauseCanvas;
 	[SerializeField] GameObject tabCanvas;
 
-	[SerializeField] Text roomName;
-
 	[HideInInspector] public bool paused = false;
 
 	private void Start() {
 		if (IsLocalPlayer) {
 			pauseCanvas.SetActive(false);
 			tabCanvas.SetActive(false);
-			PhotonRealtimeTransport transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
-			roomName.text = transport.RoomName;
 		}
 	}
 
