@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1732206, g: 0.1645535, b: 0.29666728, a: 1}
+  m_IndirectSpecularColor: {r: 0.17316318, g: 0.16457182, b: 0.29665613, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29707636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -769.4, y: -82, z: 258}
+  m_LocalPosition: {x: -769.4, y: -83.5, z: 258}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 35858523}
   - component: {fileID: 35858524}
+  - component: {fileID: 35858525}
   m_Layer: 0
   m_Name: Spawnpoint
   m_TagString: Spawnpoint
@@ -241,6 +242,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 29, y: 29, z: 29}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &35858525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35858522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bd834389ce7ba4881e9ff83872b793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &73465285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1515,7 +1528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438682568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1437, y: 0, z: 745}
+  m_LocalPosition: {x: -1410.3, y: 0, z: 745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
