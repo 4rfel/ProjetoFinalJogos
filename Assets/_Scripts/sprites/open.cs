@@ -10,7 +10,7 @@ public class open : NetworkBehaviour {
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
-		rb.angularVelocity = Vector3.forward * 5f;
+		rb.angularVelocity = Vector3.forward * 0.5f;
 		angularVelocity = rb.angularVelocity;
 	}
 
