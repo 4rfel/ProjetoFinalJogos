@@ -16,7 +16,7 @@ public class StartGame : NetworkBehaviour {
 	void Update() {
 		if (IsHost) {
 			if (Input.GetKeyDown(KeyCode.Q)) {
-				NetworkSceneManager.SwitchScene("Hole1");
+				NetworkSceneManager.SwitchScene("Hole4");
 			}
 		}
 	}
