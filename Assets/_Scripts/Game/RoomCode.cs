@@ -18,7 +18,6 @@ public class RoomCode : NetworkBehaviour {
 			transport = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<PhotonRealtimeTransport>();
 		} else {
 			roomName.text = transport.RoomName;
-			Debug.Log(transport.RoomName);
 		}
 	}
 }
